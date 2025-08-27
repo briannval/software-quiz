@@ -1,5 +1,9 @@
 #include "stdbool.h"
 #include "standard_calc.h"
+#include <cmath>
+#include <algorithm>
+
+using namespace std;
 
 /**
  * @brief Bounds the provided angle between [-180, 180) degrees.
@@ -13,7 +17,19 @@
  * @return float: The bounded angle in degrees.
  */
 float bound_to_180(float angle) {
-    return 0;
+    // Same explanation as Python version, standard_calc.py
+
+    angle = fmod(angle, 360);
+
+    if (angle >= 180.0f) {
+        return angle - 180.0f;
+    }
+
+    if (angle <= 180.0f) {
+        return angle + 180.0f;
+    }
+
+    return angle;
 }
 
 /**
@@ -29,5 +45,27 @@ float bound_to_180(float angle) {
  * @return bool: TRUE when `middle_angle` is not in the reflex angle of `first_angle` and `second_angle`, FALSE otherwise
  */
 bool is_angle_between(float first_angle, float middle_angle, float second_angle) {
-    return true;
+    // Same explanation as Python version, standard_calc.py
+
+    float bounded_first_angle = bound_to_180(first_angle);
+    float bounded_second_angle = bound_to_180(second_angle);
+    float bounded_middle_angle = bound_to_180(middle_angle);
+
+    if (bounded_middle_angle == bounded_first_angle || bounded_middle_angle == bounded_second_angle) {
+        return true;
+    }
+
+    float abs_diff = abs(bounded_second_angle - bounded_first_angle);
+    float greater_angle = max(bounded_first_angle, bounded_second_angle);
+    float smaller_angle = min(bounded_first_angle, bounded_second_angle);
+
+    if (abs_diff == 180.0f) {
+        return true;
+    }
+
+    if (abs_diff > 180.0f) {
+        return bounded_middle_angle > greater_angle || bounded_middle_angle < smaller_angle;
+    }
+
+    return bounded_middle_angle < greater_angle && bounded_middle_angle > smaller_angle;
 }
