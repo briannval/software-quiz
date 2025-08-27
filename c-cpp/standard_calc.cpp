@@ -22,11 +22,11 @@ float bound_to_180(float angle) {
     angle = fmod(angle, 360);
 
     if (angle >= 180.0f) {
-        return angle - 180.0f;
+        return angle - 360.0f;
     }
 
     if (angle <= 180.0f) {
-        return angle + 180.0f;
+        return angle + 360.0f;
     }
 
     return angle;
