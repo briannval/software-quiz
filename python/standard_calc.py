@@ -1,6 +1,7 @@
 def validate_input(angle):
-    if type(angle) != int and type(angle) != float:
-        raise Exception("Incorrect input type")
+    if isinstance(angle, int) or isinstance(angle, float):
+        return
+    raise Exception("Incorrect input type")
 
 
 def bound_to_180(angle):
@@ -45,4 +46,23 @@ def is_angle_between(first_angle, middle_angle, second_angle):
     bounded_first_angle = bound_to_180(first_angle)
     bounded_second_angle = bound_to_180(second_angle)
     bounded_middle_angle = bound_to_180(middle_angle)
-    return True
+
+    abs_diff = abs(bounded_second_angle - bounded_first_angle)
+    greater_angle = max(bounded_first_angle, bounded_second_angle)
+    smaller_angle = min(bounded_first_angle, bounded_second_angle)
+
+    if abs_diff == 180:  # the alternate is also 180, so always True
+        return True
+
+    if (
+        bounded_middle_angle == bounded_first_angle
+        or bounded_middle_angle == bounded_second_angle
+    ):  # not in either arcs
+        return True
+
+    if abs_diff > 180:  # then we should check the inverse for the non-reflex angle
+        return (
+            bounded_middle_angle > greater_angle or bounded_middle_angle < smaller_angle
+        )
+
+    return bounded_middle_angle < greater_angle and bounded_middle_angle > smaller_angle
