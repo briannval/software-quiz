@@ -36,18 +36,26 @@ def is_angle_between(first_angle, middle_angle, second_angle):
 
     The condition is that the middle angle cannot be within the REFLEX angle.
 
-    A reflex angle is > 180 and < 360, so it's the longer arc between the first and second angle, that the middle angle cannot be contained in.
+    A reflex angle is > 180 and < 360, so it's the longer arc between the first and second angle,
+    that the middle angle cannot be contained in.
 
     The two angles are the endpoints that bound the arcs, they are not inside either arc.
     Hence, if the middle angle is equal to either, then it is contained in between, since
     it is not possible for it to be in a reflex angle.
 
-    Then we define Ga and Sa which are the greater and smaller angles of the two, after being bounded using previous function
-    If abs(Ga - Sa) = 180, then the two angles are 180 degrees apart, so both arcs are NOT reflex angles.
+    Then we define Ga and Sa which are the greater and smaller angles of the two,
+    after being bounded using previous function
+
+    If abs(Ga - Sa) = 180, then the two angles are 180 degrees apart,
+    so both arcs are NOT reflex angles.
+
     Hence, by vacuous truth, the middle angle is always between both angles.
 
-    Now, if abs(Ga - Sa) > 180, then [Sa, Ga] is the range of the reflex, so middle MUST NOT be in that range
-    However, if abs(Ga - Sa) < 180, then [Sa, Ga] is the range of the non-reflex, so middle MUST be in that range
+    Now, if abs(Ga - Sa) > 180, then [Sa, Ga] is the range of the reflex,
+    so middle MUST NOT be in that range.
+
+    However, if abs(Ga - Sa) < 180, then [Sa, Ga] is the range of the non-reflex,
+    so middle MUST be in that range.
 
     The implementation below satisfies the above.
     The same explanation holds for the C++ version.
