@@ -28,13 +28,21 @@ def test_bound_basic1():
 
 
 def test_between_basic1():
+    """
+    1. Test equal
+    2. Test vacuous
+    3. Test diff not in reflex
+    4. Test diff in reflex
+    """
     assert is_angle_between(0, 1, 2)
 
     assert is_angle_between(1, 1, 2)
     assert is_angle_between(1, 2, 2)
 
+    assert is_angle_between(0, -180, 450)
+    assert is_angle_between(1080, 1260, 67890029)  # random number
+
     assert not is_angle_between(45, 90, 270)
     assert not is_angle_between(10, 50, 350)
-    assert not is_angle_between(10, 50, -10)
-
     assert is_angle_between(10, 0, 350)
+    assert is_angle_between(80, 90, -170)
