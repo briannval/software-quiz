@@ -10,6 +10,7 @@ def test_bound_basic1():
     2. Integer
     3. Decimal
     4. Boundary
+    5. Negative
     """
 
     assert bound_to_180(0) == 0
@@ -22,6 +23,8 @@ def test_bound_basic1():
 
     assert bound_to_180(179.5) == 179.5
     assert bound_to_180(179.99999) == 179.99999
+
+    assert bound_to_180(-180) == -180
 
 
 """ Tests for is_angle_between() """
@@ -39,8 +42,8 @@ def test_between_basic1():
     assert is_angle_between(1, 1, 2)
     assert is_angle_between(1, 2, 2)
 
-    assert is_angle_between(0, -180, 450)
-    assert is_angle_between(1080, 1260, 67890029)  # random number
+    assert is_angle_between(0, 450, -180)
+    assert is_angle_between(1080, 67890029, 1260)  # random number
 
     assert not is_angle_between(45, 90, 270)
     assert not is_angle_between(10, 50, 350)
