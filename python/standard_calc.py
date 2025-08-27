@@ -78,10 +78,6 @@ def is_angle_between(first_angle, middle_angle, second_angle):
     greater_angle = max(bounded_first_angle, bounded_second_angle)
     smaller_angle = min(bounded_first_angle, bounded_second_angle)
 
-    print(bounded_first_angle)
-    print(bounded_second_angle)
-    print(abs_diff)
-
     if abs_diff == 180:  # the alternate is also 180, so always True
         return True
 

@@ -49,7 +49,7 @@ def test_between_basic1():
     assert is_angle_between(1, 1, 2)
     assert is_angle_between(1, 2, 2)
     assert is_angle_between(170, -170, -170)
-    assert is_angle_between(179.9999, -179.9999, 180)
+    assert is_angle_between(179.9999, 180, -179.9999)
 
     assert is_angle_between(0, 450, -180)
     assert is_angle_between(1080, 67890029, 1260)  # random number
