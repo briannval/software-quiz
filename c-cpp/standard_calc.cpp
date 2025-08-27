@@ -25,7 +25,7 @@ float bound_to_180(float angle) {
         return angle - 360.0f;
     }
 
-    if (angle <= 180.0f) {
+    if (angle < -180.0f) {
         return angle + 360.0f;
     }
 
